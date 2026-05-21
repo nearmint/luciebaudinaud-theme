@@ -135,8 +135,7 @@ luciebaudinaud-theme/
 ├── dist/                          Vite output (gitignored, generated on deploy)
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml                 Lint + build on PR
-│       └── deploy.yml             SFTP deploy on main
+│       └── ci.yml                 Lint + build on PR
 ├── package.json, vite.config.js
 └── docs/
     ├── GUIDE-LUCIE.md             Editorial guide (French)
@@ -170,13 +169,33 @@ Open `languages/lb3-en_US.po` in Poedit, translate, save (regenerates `.mo`).
 
 ## Deployment
 
-Auto-deploy via GitHub Actions on push to `main`:
+Manual SFTP deploy via `bin/deploy-sftp.sh` (uses `lftp`).
 
-1. PHP lint (8.1, 8.2, 8.3)
-2. Vite build (Node 20)
-3. SFTP upload to OVH (port 22, SSH)
+### One-time setup
 
-Deploy takes ~2 minutes. Status in [Actions](https://github.com/nearmint/luciebaudinaud-theme/actions).
+```bash
+brew install lftp
+cp .env.example .env
+# Edit .env to fill in your OVH SFTP credentials
+```
+
+### Deploy workflow
+
+```bash
+# 1. Test connection
+bash bin/deploy-sftp.sh --connect-test
+
+# 2. Preview changes (no upload)
+bash bin/deploy-sftp.sh --dry-run
+
+# 3. Real deploy (confirmation prompt)
+bash bin/deploy-sftp.sh
+
+# 4. Post-deploy sanity check
+bash bin/check-headers.sh https://luciebaudinaud.com
+```
+
+CI workflow (`.github/workflows/ci.yml`) validates PHP lint and Vite build on every PR, but does NOT deploy. Production deploys are always manual under explicit user validation, following Nicolas's "2 validations séparées" convention (push GitHub → deploy SFTP).
 
 ---
 

@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- Deploy workflow switched from FTPS (port 21) to SFTP (port 22) via 
-  wlixcc/SFTP-Deploy-Action. Better aligned with OVH SSH dedicated 
-  account and enforces sftp_only mode (no fallback to unencrypted FTP).
+- Deploy workflow: replaced GitHub Actions auto-deploy (FTPS) with local 
+  SFTP script bin/deploy-sftp.sh (lftp), matching the workflow used on 
+  Lamixtape. Credentials stay 100% local (.env gitignored), no secret 
+  in GitHub. CI workflow preserved for PHP lint + Vite build validation.
+
+### Removed
+- .github/workflows/deploy.yml (replaced by bin/deploy-sftp.sh)
 
 ## [1.0.0] — 2026-04-22
 
