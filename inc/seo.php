@@ -218,8 +218,36 @@ add_action('wp_head', static function (): void {
         echo '<meta name="twitter:image" content="' . esc_url($image) . '">' . "\n";
     }
 
-    // hreflang alternates via Polylang
-    if (function_exists('pll_the_languages')) {
+    // hreflang alternates via Polylang.
+    // Sur singular : on consulte les vraies traductions du post pour ne PAS émettre
+    // d'alternate vers la home d'une langue où le post n'existe pas (Google considère
+    // un alternate inexistant comme une erreur, et ça gonfle "Alternate with proper
+    // canonical" dans GSC).
+    $lang_map = ['fr' => 'fr-FR', 'en' => 'en-US'];
+
+    if (is_singular() && function_exists('pll_get_post_translations')) {
+        $post_id      = get_queried_object_id();
+        $translations = pll_get_post_translations($post_id);
+        if (empty($translations) && function_exists('pll_get_post_language')) {
+            $current_lang = pll_get_post_language($post_id);
+            if ($current_lang) {
+                $translations = [$current_lang => $post_id];
+            }
+        }
+        foreach ($translations as $slug => $translated_id) {
+            if (!isset($lang_map[$slug])) {
+                continue;
+            }
+            $url = get_permalink($translated_id);
+            if (!$url) {
+                continue;
+            }
+            echo '<link rel="alternate" hreflang="' . esc_attr($lang_map[$slug]) . '" href="' . esc_url($url) . '">' . "\n";
+        }
+        if (function_exists('pll_home_url')) {
+            echo '<link rel="alternate" hreflang="x-default" href="' . esc_url(pll_home_url('fr')) . '">' . "\n";
+        }
+    } elseif (function_exists('pll_the_languages')) {
         $langs = pll_the_languages(['raw' => 1]);
         if (is_array($langs)) {
             foreach ($langs as $lang) {
@@ -228,7 +256,6 @@ add_action('wp_head', static function (): void {
                     echo '<link rel="alternate" hreflang="' . esc_attr($hreflang) . '" href="' . esc_url($lang['url']) . '">' . "\n";
                 }
             }
-            // x-default → version FR
             if (function_exists('pll_home_url')) {
                 echo '<link rel="alternate" hreflang="x-default" href="' . esc_url(pll_home_url('fr')) . '">' . "\n";
             }
@@ -239,16 +266,16 @@ add_action('wp_head', static function (): void {
 }, 2);
 
 /**
- * noindex sur les archives générées automatiquement par WP (auteur, date, tag, recherche).
- * On garde `follow` pour ne pas bloquer le crawl des liens sortants.
+ * noindex,nofollow sur les archives auto-générées par WP (auteur, catégorie, tag,
+ * date, recherche). Double sécurité par-dessus le 301 d'inc/security.php sur /author/.
  * Les pages utiles (home, singles, pages légales) restent indexables.
  */
 add_action('wp_head', static function (): void {
     if (is_admin()) {
         return;
     }
-    if (is_author() || is_date() || is_tag() || is_search()) {
-        echo '<meta name="robots" content="noindex,follow">' . "\n";
+    if (is_author() || is_category() || is_tag() || is_date() || is_search()) {
+        echo '<meta name="robots" content="noindex,nofollow">' . "\n";
     }
 }, 1);
 
@@ -302,21 +329,37 @@ add_action('wp_head', static function (): void {
     }
 
     if (is_front_page()) {
+        // sameAs : liste curée des profils canoniques de Lucie Baudinaud. Critique
+        // pour le knowledge panel Google (confirme que toutes ces pages parlent
+        // de la même entité). Mettre à jour si un nouveau profil officiel apparaît.
         $person = [
-            '@context' => 'https://schema.org',
-            '@type'    => 'Person',
-            'name'     => 'Lucie Baudinaud',
-            'jobTitle' => __('Directrice de la photographie', 'lb3'),
-            'url'      => home_url('/'),
-            'sameAs'   => array_values(array_filter([
-                (string) get_field('social_instagram', lb3_get_fr_front_page_id()),
-                (string) get_field('social_imdb', lb3_get_fr_front_page_id()),
-                (string) get_field('social_vimeo', lb3_get_fr_front_page_id()),
-            ])),
-            'memberOf' => [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'Person',
+            'name'       => 'Lucie Baudinaud',
+            'url'        => home_url('/'),
+            'jobTitle'   => __('Directrice de la photographie', 'lb3'),
+            'knowsAbout' => ['Cinematography', 'Director of Photography', 'Film', 'Documentary'],
+            'alumniOf'   => [
+                '@type' => 'EducationalOrganization',
+                'name'  => "La Fémis - École nationale supérieure des métiers de l'image et du son",
+                'url'   => 'https://www.femis.fr',
+            ],
+            'memberOf'   => [
                 '@type' => 'Organization',
-                'name'  => 'AFC — Association Française des directeurs de la photographie Cinématographique',
-                'url'   => 'https://www.afcinema.com/',
+                'name'  => 'AFC - Association Française des directeurs de la photographie Cinématographique',
+                'url'   => 'https://www.afcinema.com',
+            ],
+            'sameAs'     => [
+                'https://www.imdb.com/fr/name/nm3044276/',
+                'https://www.afcinema.com/Baudinaud-Lucie.html',
+                'https://www.allocine.fr/personne/fichepersonne_gen_cpersonne=764843.html',
+                'https://www.unifrance.org/annuaires/personne/392232/lucie-baudinaud',
+                'https://www.femis.fr/index.php?page=fiche_ancien&id_ancien=18399',
+                'https://www.femmesalacamera.com/membres-collectif/baudinaud-lucie',
+                'https://www.film-documentaire.fr/4DACTION/w_liste_generique/C_66501_F',
+                'https://mubi.com/fr/cast/lucie-baudinaud',
+                'https://vimeo.com/user20159589',
+                'https://www.instagram.com/luciebaudinaud/',
             ],
         ];
 

@@ -13,6 +13,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Lamixtape. Credentials stay 100% local (.env gitignored), no secret 
   in GitHub. CI workflow preserved for PHP lint + Vite build validation.
 
+### Fixed
+- SEO : JSON-LD Person enrichi avec sameAs (IMDB, AFC, Allociné, Unifrance, 
+  La Fémis, Femmes à la caméra, Film-Documentaire, MUBI, Vimeo, Instagram), 
+  alumniOf (La Fémis), knowsAbout, pour favoriser knowledge panel Google
+- SEO : fix hreflang Polylang sur fiches films — la version EN pointait vers /en/ 
+  (home) au lieu de la vraie traduction. Maintenant : seules les langues 
+  effectivement traduites apparaissent en hreflang alternate
+- SEO : noindex,nofollow sur archives auteur/catégorie/tag/date/recherche 
+  (en plus du 301 redirect existant sur /author/)
+
+### Context
+- Suite à un hack résolu (cloaking bots servant du spam Kavbet aux crawlers)
+- 326 backlinks spam disavowed via GSC
+- Réindexation manuelle demandée sur la home
+
 ### Removed
 - .github/workflows/deploy.yml (replaced by bin/deploy-sftp.sh)
 
