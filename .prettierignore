@@ -1,0 +1,7 @@
+dist/
+node_modules/
+vendor/
+*.min.*
+.husky/_/
+package-lock.json
+acf-json/

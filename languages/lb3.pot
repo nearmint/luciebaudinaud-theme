@@ -1,0 +1,624 @@
+# Copyright (C) Lucie Baudinaud
+# This file is distributed under the same license as the lb3 theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: lb3 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-20 11:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: lb3 i18n (bin/make-pot.php)\n"
+"X-Domain: lb3\n"
+
+#: template-parts/films-grid.php:18
+msgid "%d films affichés"
+msgstr ""
+
+#: template-parts/films-grid.php:20
+msgid "%s : %d films"
+msgstr ""
+
+#: template-parts/films-grid.php:19
+msgid "%s : 1 film"
+msgstr ""
+
+#: template-parts/films-grid.php:17
+msgid "1 film affiché"
+msgstr ""
+
+#: inc/admin-alt-validator.php:129
+msgid "Accessibilité / SEO — texte alternatif manquant"
+msgstr ""
+
+#: inc/seo.php:142
+msgid "Accueil"
+msgstr ""
+
+#: inc/security.php:100
+msgid "Accès à la REST API réservé aux utilisateurs authentifiés."
+msgstr ""
+
+#: inc/acf-fields.php:144
+msgid "Ajoute une entrée par festival (sélection officielle, prix ou mention). Laisser vide si le film n'a pas de palmarès."
+msgstr ""
+
+#: inc/acf-fields.php:142
+msgid "Ajouter une sélection / un prix"
+msgstr ""
+
+#: header.php:23
+msgid "Aller au contenu"
+msgstr ""
+
+#: inc/acf-fields.php:89
+#: inc/acf-fields.php:165
+#: inc/admin-columns.php:31
+msgid "Année"
+msgstr ""
+
+#: inc/acf-fields.php:170
+msgid "Année de la sélection ou du prix. Ex : 2026."
+msgstr ""
+
+#: inc/acf-fields.php:92
+msgid "Année de sortie. Ex : « 2024 »."
+msgstr ""
+
+#: template-parts/films-grid.php:87
+msgid "Aucun film à afficher"
+msgstr ""
+
+#: inc/acf-fields.php:401
+msgid "Bande séparatrice : avant CV"
+msgstr ""
+
+#: inc/acf-fields.php:409
+msgid "Bande séparatrice : avant Contact"
+msgstr ""
+
+#: inc/acf-fields.php:393
+msgid "Bande séparatrice : avant Photos"
+msgstr ""
+
+#: inc/setup.php:181
+#: inc/template.php:252
+msgid "Bande-annonce de %s"
+msgstr ""
+
+#: template-parts/contact.php:14
+msgid "Bio / Contact"
+msgstr ""
+
+#: inc/acf-fields.php:429
+msgid "Bio courte et coordonnées affichées dans la section Contact. Inclure le mailto: pour tracking Umami."
+msgstr ""
+
+#: front-page.php:47
+#: template-parts/cv.php:16
+#: template-parts/hero.php:36
+#: template-parts/site-header.php:61
+#: template-parts/site-header.php:92
+msgid "CV"
+msgstr ""
+
+#: inc/acf-fields.php:421
+msgid "CV affiché dans la section CV. Utiliser des titres (H2/H3) pour structurer par rubrique (longs métrages, courts métrages, clips…)."
+msgstr ""
+
+#: inc/acf-fields.php:375
+msgid "CV au format PDF"
+msgstr ""
+
+#: inc/acf-fields.php:233
+#: single.php:43
+msgid "Caméra"
+msgstr ""
+
+#: inc/acf-fields.php:71
+msgid "Champ obsolète. Recopiez l'URL Vimeo ou YouTube dans le champ URL ci-dessus, puis videz complètement ce champ."
+msgstr ""
+
+#: template-parts/lang-switcher.php:53
+msgid "Changer de langue"
+msgstr ""
+
+#: inc/acf-fields.php:39
+msgid "Cocher pour remonter ce film en tête de la grille de la home. Les films « mis en avant » apparaissent avant les autres."
+msgstr ""
+
+#: inc/acf-fields.php:252
+msgid "Codec et container. Ex : « ProRes 4444 », « ARRIRAW »."
+msgstr ""
+
+#: inc/acf-fields.php:56
+msgid "Collez uniquement l'URL de la vidéo. Exemples : https://vimeo.com/157932076 ou https://www.youtube.com/watch?v=dQw4w9WgXcQ. Laissez vide si pas de bande-annonce."
+msgstr ""
+
+#: inc/acf-fields.php:292
+msgid "Coloriste / étalonneur (facultatif). Ex : « Pierre Dupont, Éclair »."
+msgstr ""
+
+#: inc/admin-alt-validator.php:137
+msgid "Complète le texte alternatif de chaque image depuis la médiathèque. Il sera lu par les lecteurs d'écran et indexé par les moteurs de recherche."
+msgstr ""
+
+#: front-page.php:63
+#: template-parts/hero.php:37
+#: template-parts/site-header.php:62
+#: template-parts/site-header.php:93
+msgid "Contact"
+msgstr ""
+
+#: inc/acf-fields.php:319
+msgid "Contenu de la page"
+msgstr ""
+
+#: page-legal.php:50
+msgid "Contenu à renseigner dans l'admin WordPress (champ « Contenu de la page »)."
+msgstr ""
+
+#: inc/admin-alt-validator.php:86
+msgid "Cover (hero single)"
+msgstr ""
+
+#: template-parts/hero.php:54
+msgid "Descendre vers les films"
+msgstr ""
+
+#: inc/seo.php:312
+#: inc/seo.php:354
+#: template-parts/hero.php:47
+#: template-parts/site-header.php:54
+msgid "Directrice de la photographie"
+msgstr ""
+
+#: inc/acf-fields.php:82
+#: inc/admin-columns.php:32
+msgid "Durée"
+msgstr ""
+
+#: inc/acf-fields.php:64
+msgid "Embed vidéo (obsolète)"
+msgstr ""
+
+#: inc/acf-fields.php:195
+msgid "Ex : « Caméra d'Or », « Prix de la mise en scène ». Inutile pour une simple sélection."
+msgstr ""
+
+#: inc/render.php:81
+msgid "Fermer la vidéo"
+msgstr ""
+
+#: template-parts/site-header.php:74
+msgid "Fermer le menu"
+msgstr ""
+
+#: inc/acf-fields.php:148
+msgid "Festival"
+msgstr ""
+
+#: inc/acf-fields.php:30
+msgid "Fiche film"
+msgstr ""
+
+#: inc/acf-fields.php:229
+#: single.php:188
+msgid "Fiche technique"
+msgstr ""
+
+#: template-parts/breadcrumbs.php:25
+msgid "Fil d'Ariane"
+msgstr ""
+
+#: inc/acf-fields.php:34
+#: inc/admin-columns.php:28
+msgid "Film mis en avant"
+msgstr ""
+
+#: inc/seo.php:148
+#: template-parts/films-grid.php:30
+#: template-parts/hero.php:34
+#: template-parts/site-header.php:59
+#: template-parts/site-header.php:90
+msgid "Films"
+msgstr ""
+
+#: template-parts/films-grid.php:37
+msgid "Filtrer les films par catégorie"
+msgstr ""
+
+#: single.php:45
+msgid "Format"
+msgstr ""
+
+#: inc/acf-fields.php:249
+msgid "Format de capture"
+msgstr ""
+
+#: inc/acf-fields.php:85
+msgid "Format libre. Ex : « 90 min », « 52 min », « 1h30 »."
+msgstr ""
+
+#: inc/acf-fields.php:96
+msgid "Galerie de photogrammes"
+msgstr ""
+
+#: inc/admin-alt-validator.php:95
+msgid "Galerie photo #%d"
+msgstr ""
+
+#: inc/acf-fields.php:384
+#: template-parts/photos-gallery.php:18
+msgid "Galerie photos"
+msgstr ""
+
+#: template-parts/films-grid.php:75
+msgid "Grille des films"
+msgstr ""
+
+#: inc/acf-fields.php:349
+msgid "Hero : image de fond"
+msgstr ""
+
+#: inc/acf-fields.php:440
+msgid "IMDb URL"
+msgstr ""
+
+#: inc/acf-fields.php:48
+msgid "Image d'au moins 2400 px de large, orientée paysage. Apparaît en fond fullscreen en haut de la fiche film."
+msgstr ""
+
+#: inc/acf-fields.php:43
+msgid "Image de couverture (fullscreen)"
+msgstr ""
+
+#: inc/acf-fields.php:354
+msgid "Image fullscreen affichée au chargement de la home. Paysage, ≥ 2400 px de large."
+msgstr ""
+
+#: inc/acf-fields.php:405
+msgid "Image pleine largeur affichée avant la section CV. Format paysage large, ≥ 2000 px."
+msgstr ""
+
+#: inc/acf-fields.php:413
+msgid "Image pleine largeur affichée avant la section Contact. Format paysage large, ≥ 2000 px."
+msgstr ""
+
+#: inc/acf-fields.php:397
+msgid "Image pleine largeur affichée avant la section Photos. Format paysage large, ≥ 2000 px."
+msgstr ""
+
+#: inc/acf-fields.php:371
+msgid "Image utilisée lors des partages sociaux quand aucune couverture n'est disponible. Dimensions recommandées : 1200 × 630 px, poids ≤ 200 KB."
+msgstr ""
+
+#: inc/admin-alt-validator.php:79
+msgid "Image à la une"
+msgstr ""
+
+#: inc/acf-fields.php:433
+msgid "Instagram URL"
+msgstr ""
+
+#: 404.php:19
+msgid "La page que vous cherchez n'existe pas ou a été déplacée."
+msgstr ""
+
+#: inc/render.php:75
+#: inc/template.php:253
+msgid "Lecteur vidéo"
+msgstr ""
+
+#: template-parts/site-footer.php:18
+msgid "Legal notice"
+msgstr ""
+
+#: template-parts/site-footer.php:55
+msgid "Liens légaux"
+msgstr ""
+
+#: inc/video-facade.php:96
+msgid "Lire la vidéo"
+msgstr ""
+
+#: template-parts/site-header.php:52
+msgid "Lucie Baudinaud"
+msgstr ""
+
+#: template-parts/hero.php:44
+msgid "Lucie Baudinaud, AFC"
+msgstr ""
+
+#: inc/acf-fields.php:181
+#: single.php:59
+msgid "Mention spéciale"
+msgstr ""
+
+#: template-parts/site-footer.php:19
+msgid "Mentions légales"
+msgstr ""
+
+#: inc/setup.php:39
+msgid "Menu principal"
+msgstr ""
+
+#: inc/admin-columns.php:48
+msgid "Mis en avant"
+msgstr ""
+
+#: inc/acf-fields.php:263
+#: single.php:54
+msgid "Mixte"
+msgstr ""
+
+#: inc/acf-fields.php:236
+msgid "Modèle principal. Ex : « Arri Alexa 35 », « Sony Venice »."
+msgstr ""
+
+#: inc/acf-fields.php:187
+msgid "Nature de la distinction."
+msgstr ""
+
+#: template-parts/site-header.php:41
+msgid "Navigation film"
+msgstr ""
+
+#: template-parts/hero.php:32
+#: template-parts/site-header.php:40
+msgid "Navigation principale"
+msgstr ""
+
+#: inc/acf-fields.php:78
+msgid "Nom complet du réalisateur ou de la réalisatrice. Ex : « Agnès Varda »."
+msgstr ""
+
+#: inc/acf-fields.php:152
+msgid "Nom du festival. Ex : « Festival de Cannes »."
+msgstr ""
+
+#: inc/acf-fields.php:192
+msgid "Nom du prix"
+msgstr ""
+
+#: inc/acf-fields.php:261
+#: single.php:52
+msgid "Numérique"
+msgstr ""
+
+#: inc/acf-fields.php:241
+#: single.php:44
+msgid "Optiques"
+msgstr ""
+
+#: inc/acf-fields.php:268
+msgid "Origine image du tournage."
+msgstr ""
+
+#: template-parts/site-header.php:74
+#: template-parts/site-header.php:77
+msgid "Ouvrir le menu"
+msgstr ""
+
+#: inc/acf-fields.php:380
+msgid "PDF téléchargeable depuis la section CV. Nom de fichier lisible (ex : « lucie-baudinaud-cv.pdf »), poids ≤ 2 MB."
+msgstr ""
+
+#: inc/acf-fields.php:345
+msgid "Page d'accueil"
+msgstr ""
+
+#: 404.php:16
+msgid "Page introuvable"
+msgstr ""
+
+#: inc/acf-fields.php:315
+msgid "Page légale"
+msgstr ""
+
+#: inc/acf-fields.php:262
+#: single.php:53
+msgid "Pellicule"
+msgstr ""
+
+#: front-page.php:28
+msgid "Photo"
+msgstr ""
+
+#: inc/acf-fields.php:103
+msgid "Photogrammes ou photos de plateau. Recommandé : 6 à 15 images horizontales en haute définition (≥ 2000 px de large)."
+msgstr ""
+
+#: front-page.php:40
+#: template-parts/hero.php:35
+#: template-parts/site-header.php:60
+#: template-parts/site-header.php:91
+msgid "Photos"
+msgstr ""
+
+#: inc/acf-fields.php:389
+msgid "Photos personnelles affichées en grille dans la section Photos de la home. Haute définition, format libre."
+msgstr ""
+
+#: inc/acf-fields.php:362
+msgid "Phrase unique visible dans Google et en aperçu de partage. 150 à 160 caractères, pas de guillemets superflus."
+msgstr ""
+
+#: template-parts/site-footer.php:19
+msgid "Politique de confidentialité"
+msgstr ""
+
+#: template-parts/site-footer.php:18
+msgid "Privacy policy"
+msgstr ""
+
+#: inc/acf-fields.php:180
+#: single.php:58
+msgid "Prix"
+msgstr ""
+
+#: inc/acf-fields.php:273
+#: single.php:47
+msgid "Ratio"
+msgstr ""
+
+#: inc/acf-fields.php:276
+msgid "Ratio d'image. Ex : « 1.85:1 », « 2.39:1 »."
+msgstr ""
+
+#: single.php:86
+msgid "Regarder"
+msgstr ""
+
+#: template-parts/film-card.php:94
+msgid "Regarder la bande-annonce de %s"
+msgstr ""
+
+#: template-parts/back-to-top.php:20
+msgid "Retour en haut de la page"
+msgstr ""
+
+#: 404.php:23
+#: page-legal.php:58
+msgid "Retour à l'accueil"
+msgstr ""
+
+#: inc/acf-fields.php:75
+#: inc/admin-columns.php:30
+msgid "Réalisation"
+msgstr ""
+
+#: template-parts/site-footer.php:70
+msgid "Réseaux"
+msgstr ""
+
+#: inc/acf-fields.php:281
+#: single.php:48
+msgid "Résolution"
+msgstr ""
+
+#: inc/acf-fields.php:284
+msgid "Résolution de livraison. Ex : « 4K », « 2K », « 6K OG »."
+msgstr ""
+
+#: inc/acf-fields.php:358
+msgid "SEO : description (meta)"
+msgstr ""
+
+#: inc/acf-fields.php:366
+msgid "SEO : image Open Graph par défaut"
+msgstr ""
+
+#: inc/acf-fields.php:157
+msgid "Section"
+msgstr ""
+
+#: inc/acf-fields.php:160
+msgid "Section du festival (facultatif). Ex : « Semaine de la Critique »."
+msgstr ""
+
+#: inc/setup.php:133
+msgid "Seules les URLs Vimeo et YouTube sont acceptées."
+msgstr ""
+
+#: inc/acf-fields.php:257
+#: single.php:46
+msgid "Support"
+msgstr ""
+
+#: inc/acf-fields.php:179
+#: single.php:57
+msgid "Sélection"
+msgstr ""
+
+#: inc/acf-fields.php:135
+#: single.php:107
+msgid "Sélections & prix"
+msgstr ""
+
+#: inc/acf-fields.php:139
+#: single.php:105
+msgid "Sélections et prix"
+msgstr ""
+
+#: inc/acf-fields.php:244
+msgid "Série d'objectifs utilisée. Ex : « Zeiss Supreme Primes »."
+msgstr ""
+
+#: inc/acf-fields.php:425
+msgid "Texte Bio / Contact"
+msgstr ""
+
+#: inc/acf-fields.php:417
+msgid "Texte CV"
+msgstr ""
+
+#: inc/acf-fields.php:324
+msgid "Texte de la page (mentions légales, politique de confidentialité…)."
+msgstr ""
+
+#: template-parts/films-grid.php:49
+msgid "Tout"
+msgstr ""
+
+#: inc/acf-fields.php:107
+#: single.php:154
+msgid "Transcription de la bande-annonce"
+msgstr ""
+
+#: inc/acf-fields.php:113
+msgid "Transcription texte de la bande-annonce (a11y, SEO). Laisser vide si la vidéo n'a pas de dialogue ou si aucune transcription n'est disponible."
+msgstr ""
+
+#: inc/security.php:232
+msgid "Trop de tentatives de connexion. Réessaie dans 15 minutes."
+msgstr ""
+
+#: inc/acf-fields.php:175
+msgid "Type"
+msgstr ""
+
+#: template-parts/cv.php:34
+msgid "Télécharger le CV (PDF)"
+msgstr ""
+
+#: inc/acf-fields.php:450
+msgid "URL complète de la chaîne Vimeo. Utilisée dans le footer et le JSON-LD."
+msgstr ""
+
+#: inc/acf-fields.php:443
+msgid "URL complète de la fiche IMDb. Utilisée dans le footer et le JSON-LD."
+msgstr ""
+
+#: inc/acf-fields.php:436
+msgid "URL complète du profil Instagram. Utilisée dans le footer et le JSON-LD (sameAs)."
+msgstr ""
+
+#: inc/acf-fields.php:52
+msgid "URL de la bande-annonce (Vimeo ou YouTube)"
+msgstr ""
+
+#: inc/acf-fields.php:447
+msgid "Vimeo URL"
+msgstr ""
+
+#: template-parts/film-card.php:80
+msgid "Voir la page du film %s"
+msgstr ""
+
+#: single.php:217
+msgid "© %1$s %2$s — Tous droits réservés"
+msgstr ""
+
+#: template-parts/site-footer.php:50
+msgid "© %s Lucie Baudinaud"
+msgstr ""
+
+#: inc/acf-fields.php:289
+#: single.php:49
+msgid "Étalonnage"
+msgstr ""
+

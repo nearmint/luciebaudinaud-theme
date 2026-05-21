@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hors ligne — Lucie Baudinaud</title>
+    <style>
+        html, body {
+            margin: 0;
+            background: #1C1A23;
+            color: #fff;
+            font-family: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+            min-height: 100vh;
+        }
+        main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .mono {
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        h1 {
+            font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin: 1rem 0 0.5rem;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            max-width: 32rem;
+        }
+        button {
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: border-color 200ms, background-color 200ms;
+        }
+        button:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="mono">Lucie Baudinaud</p>
+        <h1>Hors ligne</h1>
+        <p>Cette page n'est pas disponible sans connexion. Elle se chargera à nouveau une fois la connexion rétablie.</p>
+        <button type="button" onclick="location.reload()">Réessayer</button>
+    </main>
+</body>
+</html>

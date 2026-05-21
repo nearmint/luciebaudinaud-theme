@@ -1,0 +1,22 @@
+/*
+Theme Name: lb3
+Theme URI: https://luciebaudinaud.com
+Author: Nicolas Rapp
+Author URI: https://www.nicolasrapp.co
+Description: Portfolio theme for Lucie Baudinaud — cinematographer. Vanilla PHP + Tailwind v4 + Alpine.js + PhotoSwipe. Built with Vite.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: lb3
+Domain Path: /languages
+Tags: portfolio, photography, cinema, one-page
+*/
+
+/*
+ * Ce fichier ne contient que le header déclaratif du thème.
+ * Le CSS réel est compilé par Vite depuis src/css/app.css → dist/.
+ * Voir inc/assets.php pour l'enqueue via manifest.
+ */

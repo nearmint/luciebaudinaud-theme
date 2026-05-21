@@ -1,0 +1,386 @@
+/* ─────────────────────────────────────────────────────────
+   lb3 — feuille de styles principale
+   Compilée par Vite vers dist/assets/app-[hash].css
+   ─────────────────────────────────────────────────────────
+
+   Palette texte accessible (fond --color-ink #1C1A23)
+   Rapport de contraste WCAG AA : ≥ 4.5:1 (normal text), ≥ 3:1 (large text)
+
+   | Classe Tailwind   | Contraste vs ink | Usage                                   |
+   |-------------------|------------------|-----------------------------------------|
+   | text-white        | 17.2:1           | Titres, liens, éléments actifs          |
+   | text-white/90     |  ~13.8:1         | Body dense, prose                       |
+   | text-white/80     |  ~10.3:1         | Body standard, paragraphes, placeholder |
+   | text-white/70     |   ~7.4:1         | Meta info, boutons secondaires, footer  |
+   | text-white/60     |   ~5.2:1         | Éléments désactivés uniquement          |
+
+   Règle : ne jamais utiliser text-white/60 pour du contenu informatif.
+   (Les boutons de filtre non-actifs sont en text-white/70, pas 60.)
+   ───────────────────────────────────────────────────────── */
+
+/* Fonts self-hosted : importées depuis src/css/critical.css (inliné en head).
+   Garder UNE SEULE source d'@import pour éviter les doublons de @font-face. */
+
+/* PhotoSwipe v5 */
+@import "photoswipe/style.css";
+
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────
+   Design tokens — Tailwind v4 config inline via @theme
+   ───────────────────────────────────────────────────────── */
+@theme {
+    /* Couleurs */
+    --color-ink: #1C1A23;
+    --color-ink-soft: #2A2830;
+
+    /* Typographies */
+    --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+    /* Breakpoints customs si besoin */
+    /* --breakpoint-3xl: 1920px; */
+}
+
+/* Hauteur du header sticky (utilisée pour `top-[var(--lb-header-h)]`
+   sur les barres sticky imbriquées — filtres films, etc.). */
+:root {
+    --lb-header-h: 4rem;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Base — reset/defaults
+   ───────────────────────────────────────────────────────── */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    body {
+        background-color: var(--color-ink);
+        color: #fff;
+        font-family: var(--font-sans);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-display);
+    }
+
+    /* Focus visible global cohérent */
+    :focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+    }
+
+    /* Désactive le focus ring par défaut sur <a> qui ont déjà un focus-visible: custom */
+    a:focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    /* Utilitaire : masquer la scrollbar sur conteneurs scrollables (filtres films mobile). */
+    .lb-hide-scrollbar {
+        scrollbar-width: none;
+    }
+    .lb-hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Components — contenu WYSIWYG (CV, Bio, description film)
+   Tailwind Typography est trop lourd pour notre usage.
+   On fait un mini "prose" custom.
+   ───────────────────────────────────────────────────────── */
+@layer components {
+    .prose-cv {
+        color: rgb(255 255 255 / 0.85);
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+    /* Pas de `color` forcé sur les enfants : les styles inline du WYSIWYG
+       (ex: <span style="color:#ffcc00">) doivent pouvoir s'appliquer. La
+       couleur par défaut vient de `.prose-cv` (blanc 85%) et cascade. */
+    .prose-cv h1,
+    .prose-cv h2,
+    .prose-cv h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    .prose-cv h1 { font-size: 1.25rem; }
+    .prose-cv h2 { font-size: 1.1rem; }
+    .prose-cv h3 { font-size: 1rem; }
+
+    .prose-cv p {
+        margin: 0.75rem 0;
+    }
+    .prose-cv ul,
+    .prose-cv ol {
+        padding-left: 1.5rem;
+        margin: 0.75rem 0;
+    }
+    .prose-cv ul { list-style: disc; }
+    .prose-cv ol { list-style: decimal; }
+    .prose-cv li {
+        margin: 0.25rem 0;
+    }
+    .prose-cv a {
+        border-bottom: 1px solid rgb(255 255 255 / 0.4);
+        transition: border-color 200ms;
+    }
+    .prose-cv a:hover {
+        border-bottom-color: #fff;
+    }
+    .prose-cv em { font-style: italic; }
+    .prose-cv hr {
+        border: none;
+        border-top: 1px solid rgb(255 255 255 / 0.15);
+        margin: 2rem 0;
+    }
+    .prose-cv blockquote {
+        border-left: 2px solid rgb(255 255 255 / 0.3);
+        padding-left: 1rem;
+        margin: 1rem 0;
+        font-style: italic;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Film cards — structure nue répliquée ici (safelist/ordre de chargement
+   Tailwind). L'image définit la hauteur de la carte (ratio natif) ;
+   le footer reste en overlay absolu sur le bas de l'image.
+   Aucun filtre / overlay sur les images : exigence de fidélité couleur.
+   ───────────────────────────────────────────────────────── */
+.film {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+}
+.film > img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.film > footer {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Site header (sticky home) — slide-in fluide
+   La nav est rendue par template-parts/site-header.php. Le composant
+   Alpine `siteHeader` ajoute la classe `is-visible` quand #intro sort
+   du viewport ; par défaut, le header sticky est off-screen.
+   ───────────────────────────────────────────────────────── */
+.lb-site-header--sticky {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 300ms ease, opacity 300ms ease;
+    will-change: transform;
+}
+.lb-site-header--sticky.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+/* Masque le switch langue flottant quand le header sticky prend le relais,
+   pour éviter le doublon en haut à droite sur la home. */
+body:has(.lb-site-header--sticky.is-visible) .lang-toggle--floating {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lb-site-header--sticky {
+        transition: opacity 0.01ms linear;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   PhotoSwipe — override du thème par défaut pour matcher le look ink
+   ───────────────────────────────────────────────────────── */
+.pswp {
+    --pswp-bg: #0e0d13;
+}
+.pswp__button {
+    color: #fff !important;
+    cursor: pointer;
+}
+.pswp__caption {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    max-width: min(70ch, calc(100% - 2rem));
+    padding: 0.6rem 1.1rem;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 250ms ease;
+}
+.pswp__caption:not(:empty) {
+    opacity: 1;
+}
+@media (max-width: 640px) {
+    .pswp__caption {
+        bottom: 0.75rem;
+        font-size: 0.85rem;
+        padding: 0.45rem 0.85rem;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Print — CV imprimable propre
+   Déclenché par Cmd/Ctrl+P. Objectif : une impression A4 sobre
+   ne montrant que le CV (titre + prose-cv), fond blanc, texte noir.
+   Masque header, footer, switch langue, back-to-top, progress bar,
+   galeries, boutons vidéo, etc.
+   ───────────────────────────────────────────────────────── */
+@media print {
+    @page {
+        size: A4;
+        margin: 1.5cm;
+    }
+
+    html,
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    /* UI chrome — jamais imprimée. */
+    .lb-site-header,
+    .lb-site-footer,
+    .lang-toggle,
+    [x-data="backToTop"],
+    [x-data="scrollProgress"],
+    #lb-video-modal,
+    .pswp,
+    button {
+        display: none !important;
+    }
+
+    /* Sections home non-CV — masquées pour laisser la place au CV. */
+    #films,
+    #photos,
+    #contact,
+    .lb-hero,
+    .lb-section-divider {
+        display: none !important;
+    }
+
+    /* Single film : on imprime le corps texte (intro), pas le cover ni la nav. */
+    .film-single > header {
+        display: none !important;
+    }
+
+    /* Le CV prend toute la page. */
+    #cv {
+        padding: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Titres et prose : noir profond, structure préservée. */
+    h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+        background: transparent !important;
+    }
+
+    .prose-cv,
+    .prose-cv h1,
+    .prose-cv h2,
+    .prose-cv h3,
+    .prose-cv p,
+    .prose-cv li,
+    .prose-cv strong,
+    .prose-cv em,
+    .prose-cv blockquote {
+        color: #000 !important;
+    }
+
+    /* Liens : pas de bleu souligné, on garde juste le texte. */
+    a,
+    .prose-cv a {
+        color: #000 !important;
+        text-decoration: none !important;
+        border-bottom: none !important;
+    }
+
+    .prose-cv hr {
+        border-top-color: #000 !important;
+    }
+    .prose-cv blockquote {
+        border-left-color: #000 !important;
+    }
+
+    /* Supprime les effets décoratifs sur tout ce qui reste. */
+    * {
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+        transform: none !important;
+    }
+
+    /* Éviter les coupures moches : titres restent avec leur paragraphe. */
+    .prose-cv h1,
+    .prose-cv h2,
+    .prose-cv h3 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    .prose-cv p,
+    .prose-cv li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Images : redimensionnées pour rester dans la page. */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}

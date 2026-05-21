@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches-ignore: [main]
+
+jobs:
+  php-lint:
+    name: PHP Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: none
+
+      - name: Lint PHP files
+        run: |
+          find . -type f -name "*.php" \
+            -not -path "./node_modules/*" \
+            -not -path "./dist/*" \
+            -not -path "./vendor/*" \
+            -print0 | xargs -0 -n1 php -l
+
+  build:
+    name: Build assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -f dist/.vite/manifest.json || (echo "Manifest missing" && exit 1)
+          test -f dist/assets/*.js || (echo "JS bundle missing" && exit 1)
+          test -f dist/assets/*.css || (echo "CSS bundle missing" && exit 1)
+          echo "Build output OK"

@@ -1,0 +1,30 @@
+{
+    "name": "Lucie Baudinaud",
+    "short_name": "Lucie Baudinaud",
+    "description": "Lucie Baudinaud — directrice de la photographie (AFC).",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#1C1A23",
+    "background_color": "#1C1A23",
+    "icons": [
+        {
+            "src": "/wp-content/themes/lb3/assets/favicon/favicon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/wp-content/themes/lb3/assets/favicon/favicon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/wp-content/themes/lb3/assets/favicon/favicon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

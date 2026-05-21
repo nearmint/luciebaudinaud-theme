@@ -1,0 +1,79 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # permet deploy manuel depuis l'UI GitHub
+
+jobs:
+  deploy:
+    name: Build and deploy to OVH (SFTP)
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: none
+
+      - name: Lint PHP files
+        run: |
+          find . -type f -name "*.php" \
+            -not -path "./node_modules/*" \
+            -not -path "./dist/*" \
+            -print0 | xargs -0 -n1 php -l
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -f dist/.vite/manifest.json || (echo "Manifest missing" && exit 1)
+          echo "Build OK — ready to deploy"
+
+      - name: Prepare deploy artifact
+        run: |
+          mkdir -p deploy
+          rsync -av \
+            --exclude='.git*' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='src' \
+            --exclude='docs' \
+            --exclude='deploy' \
+            --exclude='*.md' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='vite.config.js' \
+            --exclude='eslint.config.js' \
+            --exclude='.gitignore' \
+            --exclude='.editorconfig' \
+            --exclude='LICENSE' \
+            --exclude='.husky' \
+            ./ deploy/
+          echo "=== Files prepared for upload ==="
+          find deploy -type f | wc -l
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          local_path: './deploy/*'
+          remote_path: ${{ secrets.SFTP_REMOTE_DIR }}
+          sftp_only: true
+          delete_remote_files: false

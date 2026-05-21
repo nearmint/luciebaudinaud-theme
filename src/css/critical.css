@@ -1,0 +1,108 @@
+/* ─────────────────────────────────────────────────────────
+   lb3 — critical.css (above-the-fold)
+
+   Inliné dans <head> par inc/assets.php pour supprimer la requête
+   CSS bloquante sur le first paint. Ne doit contenir QUE :
+     - les @font-face des polices critiques
+     - les tokens CSS (variables)
+     - les règles nécessaires au rendu du hero + nav + lang toggle
+     - le reset minimal body/html
+
+   Tout le reste (utilitaires Tailwind, composants en dessous du fold)
+   vit dans app.css qui est préchargé en parallèle (<link rel="preload">).
+
+   Maintenance : quand tu modifies template-parts/hero.php ou
+   .lang-toggle--floating, vérifie que les styles clés sont ici.
+   Objectif : rendre la home sans FOUC même si app.css met 500 ms à arriver.
+   ───────────────────────────────────────────────────────── */
+
+/* ── Fonts self-hosted (subset latin uniquement, FR + EN couverts).
+   Le subset `latin-ext` couvre les caractères slaves/baltes (ą, č, ę, ł, ř, š…)
+   non utilisés par le site. Son retrait économise 3 fichiers woff2
+   (~60-90 KB transférés) sans impact visible. Si du contenu `latin-ext`
+   apparaissait, les glyphes concernés tomberaient en system font.
+   Importées ici uniquement — retirées de app.css pour éviter la duplication. ── */
+@import "@fontsource/montserrat/latin-700.css";
+@import "@fontsource/quicksand/latin-400.css";
+@import "@fontsource/quicksand/latin-700.css";
+
+/* ── Design tokens ── */
+:root {
+    --color-ink: #1C1A23;
+    --color-ink-soft: #2A2830;
+    --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    --lb-header-h: 4rem;
+}
+
+/* ── Reset minimal ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    margin: 0;
+}
+
+p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; height: auto; }
+
+[x-cloak] { display: none !important; }
+
+/* ── Hero (template-parts/hero.php, #intro) ──
+   Garde uniquement le layout et le fond. Les utilitaires Tailwind
+   spécifiques (drop-shadow, tracking, tailles typo) chargent via app.css. */
+#intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: hidden;
+    background-color: var(--color-ink);
+    color: #fff;
+}
+
+/* ── Switch FR/EN flottant ── */
+.lang-toggle--floating {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+}
+@media (min-width: 640px) {
+    .lang-toggle--floating {
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* ── Focus visible cohérent dès le premier rendu ── */
+:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+a:focus:not(:focus-visible) { outline: none; }
