@@ -45,7 +45,7 @@
     "@alpinejs/intersect": "^3.14.9",
     "@fontsource/montserrat": "^5.1.1",
     "@fontsource/quicksand": "^5.1.1",
-    "alpinejs": "^3.14.9",
+    "alpinejs": "^3.15.12",
     "photoswipe": "^5.4.4",
     "web-vitals": "^4.2.4"
   },
